@@ -18,7 +18,6 @@ library(tidyr)
 #----------------------------
 # Data Analysis Project
 #----------------------------
-setwd("C:\\Users\\mtpla\\Downloads")
 germin = read_excel("germination paper data2.xlsx")
 germin= as.data.frame(germin)
 str(germin)
@@ -269,6 +268,7 @@ theta=-coef(model.param1)
 # Comparison between cox and AFT results
 model.param1
 coxfull
+
 
 
 
