@@ -1,3 +1,9 @@
+## Disclaimer
+
+This project was completed as part of a university course at UCLouvain.
+It is shared for educational and portfolio purposes only.
+
+
 ## Dataset Description
 
 This dataset comes from an experimental study investigating whether invasive (non-native) populations of *Ulmus pumila* (Siberian elm) differ in their germination dynamics compared to native populations. The dataset can be found using this link **https://zenodo.org/records/5002291**
