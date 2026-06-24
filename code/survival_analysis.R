@@ -18,7 +18,7 @@ library(tidyr)
 #----------------------------
 # Data Analysis Project
 #----------------------------
-germin = read_excel("germination paper data2.xlsx")
+germin = read_excel("data/germination_data.xlsx")
 germin= as.data.frame(germin)
 str(germin)
 
