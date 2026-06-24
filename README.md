@@ -30,6 +30,7 @@ Biological invasions often involve shifts in life-history traits that enhance es
 
 ---
 
+
 ## Dataset Description
 
 Each observation corresponds to a seed monitored during a germination experiment.
@@ -53,6 +54,15 @@ Seeds that failed to germinate during the observation period were treated as **r
 The data exhibit **Type I right censoring**, as censoring occurred at a fixed study endpoint (14 days).
 
 ---
+
+## Key Findings
+
+- Higher temperatures accelerated germination.
+- U.S. populations generally germinated earlier than Chinese populations.
+- Significant differences were detected between origins.
+- The proportional hazards assumption was violated.
+- A log-logistic AFT model provided the best fit.
+
 
 ## Statistical Methods
 
