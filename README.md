@@ -1,4 +1,4 @@
-# Survival Analysis of *Ulmus pumila* Germination Dynamics
+# Germination Dynamics of Native and Non-Native *Ulmus pumila* Populations: A Survival Analysis Approach
 
 ## Overview
 
@@ -15,6 +15,12 @@ under two temperature treatments:
 - **30°C**
 
 The objective is to determine whether non-native populations germinate faster or more successfully and whether temperature influences this process.
+
+---
+
+## Ecological Motivation
+
+Biological invasions often involve shifts in life-history traits that enhance establishment and spread in novel environments. Germination timing is a critical early-life trait influencing recruitment success and competitive ability. Understanding whether invasive populations of *Ulmus pumila* exhibit altered germination dynamics can provide insight into mechanisms underlying invasion success.
 
 ---
 
@@ -178,7 +184,7 @@ cd survival-analysis-ulmus-pumila
 Open R or RStudio and run:
 
 ```r
-source("survival_analysis.R")
+source("code/survival_analysis.R")
 ```
 
 The script imports the dataset, performs all analyses, and generates the figures used in the report.
@@ -198,6 +204,11 @@ Figures generated during the analysis are stored in:
 ```text
 figures/
 ```
+---
+
+## Reproducibility
+
+All analyses are fully reproducible from the raw dataset included in the repository. Running the R script regenerates the statistical analyses and figures presented in the report.
 
 ---
 
@@ -211,7 +222,7 @@ This study provides evidence that germination dynamics differ between native and
 
 **Mateus Auza Cruz**
 
-December 2025
+Completed: December 2025
 
 ---
 
