@@ -63,6 +63,28 @@ The data exhibit **Type I right censoring**, as censoring occurred at a fixed st
 - The proportional hazards assumption was violated.
 - A log-logistic AFT model provided the best fit.
 
+---
+## Results Snapshot
+
+### Kaplan–Meier Survival Curves
+
+![Kaplan–Meier curves](figures/km_by_origin.png)
+
+**Key observation:** Survival probabilities declined rapidly for both origins, indicating that most seeds germinated during the study period. U.S. populations generally exhibited lower survival probabilities than Chinese populations, suggesting earlier germination and supporting differences in germination dynamics between native and non-native populations.
+
+### Cox Model Survival Curves
+
+![Cox model survival curves](figures/cox_survival_curves.png)
+
+**Key observation:** The fitted Cox model closely reproduced the empirical Kaplan–Meier curves, indicating a good overall fit to the observed germination patterns. Germination timing differed significantly between geographic origins, with range emerging as an important predictor of germination dynamics.
+
+### Schoenfeld Residual Diagnostics
+
+![Schoenfeld residuals](figures/schoenfeld_residuals.png)
+
+**Key observation:** Schoenfeld residual tests revealed significant time dependence for the model covariates, and the global test strongly rejected the proportional hazards assumption. These results suggest that a standard Cox proportional hazards model may not be fully appropriate for final inference, motivating the use of parametric survival models.
+
+---
 
 ## Statistical Methods
 
