@@ -30,6 +30,15 @@ Biological invasions often involve shifts in life-history traits that enhance es
 
 ---
 
+## Data Availability
+
+The original dataset can be accessed through the Zenodo archive:
+
+[Zenodo.org](https://zenodo.org/records/5002291)
+
+Users are encouraged to cite the associated publication when appropriate.
+
+---
 
 ## Dataset Description
 
