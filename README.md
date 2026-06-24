@@ -1,60 +1,220 @@
-## Disclaimer
+# Survival Analysis of *Ulmus pumila* Germination Dynamics
 
-This project was completed as part of a university course at UCLouvain.
-It is shared for educational and portfolio purposes only.
+## Overview
 
+This project investigates whether invasive (non-native) populations of *Ulmus pumila* (Siberian elm) differ in their germination dynamics compared to native populations.
 
-## Dataset Description
+The study applies classical and modern survival analysis techniques to germination data collected from:
 
-This dataset comes from an experimental study investigating whether invasive (non-native) populations of *Ulmus pumila* (Siberian elm) differ in their germination dynamics compared to native populations. The dataset can be found using this link **https://zenodo.org/records/5002291**
+- **China** (native range)
+- **United States** (non-native range)
 
-The central ecological question is whether non-native populations exhibit faster or more successful germination, which may contribute to their invasion success.
+under two temperature treatments:
 
-### Seed Origin
+- **20°C**
+- **30°C**
 
-Seeds were collected from two geographic ranges:
-
-- **China** — native range  
-- **United States** — non-native range  
-
-### Experimental Design
-
-Germination experiments were conducted under two controlled temperature treatments:
-
-- **20 °C** (moderate temperature)  
-- **30 °C** (warm temperature)  
-
-For each seed, the time to germination was recorded. Seeds that did not germinate by the end of the observation period were treated as **right-censored** observations.
+The objective is to determine whether non-native populations germinate faster or more successfully and whether temperature influences this process.
 
 ---
 
 ## Research Question
 
-Do non-native populations of *Ulmus pumila* germinate faster or more successfully than native populations, and how is this affected by temperature?
+> Do non-native populations of *Ulmus pumila* germinate faster or more successfully than native populations, and how is this affected by temperature?
 
 ---
 
-## Recorded Variables
+## Dataset Description
 
-- **seed**: Index of the seed within each experimental replicate (values range from 1 to 20).  
-  *Note:* This variable is not a unique identifier, as the same seed index appears across multiple replicates.
-- **Range**: Geographic origin of the seed (`China` = native, `USA` = non-native).
-- **Population**: Specific population within each geographic range.
-- **Replicate**: Experimental replicate or batch to which the seed belongs.
-- **Germination_day**: Day on which germination occurred (discrete time variable).
-- **Status**: Censoring indicator (`1` = seed germinated, `0` = seed did not germinate by the end of the study).
-- **Temperature_treatment**: Temperature condition under which the seed was incubated (`20 °C` or `30 °C`).
+Each observation corresponds to a seed monitored during a germination experiment.
+
+### Variables
+
+| Variable | Description |
+|-----------|------------|
+| `seed` | Seed index within each replicate (1–20) |
+| `Range` | Geographic origin (`China` or `U.S.`) |
+| `Population` | Population identifier |
+| `Replicate` | Experimental replicate |
+| `Germination_day` | Day of germination |
+| `Status` | Event indicator (1 = germinated, 0 = censored) |
+| `Temperature_treatment` | Incubation temperature (20°C or 30°C) |
+
+### Censoring
+
+Seeds that failed to germinate during the observation period were treated as **right-censored observations**.
+
+The data exhibit **Type I right censoring**, as censoring occurred at a fixed study endpoint (14 days).
 
 ---
 
-## Statistical Framework
+## Statistical Methods
 
-Because germination time is observed as a discrete time-to-event variable with right censoring, the data naturally lend themselves to **survival analysis** methods, including:
+The analysis was conducted using survival analysis techniques implemented in R.
 
-- Kaplan–Meier estimators  
-- Log-rank tests  
-- Cox proportional hazards models  
+### Descriptive Analysis
+
+- Summary statistics of germination time
+- Distribution of populations by geographic origin
+- Boxplots of germination times
+
+### Non-Parametric Survival Analysis
+
+- Kaplan–Meier survival estimators
+- Survival curves by geographic origin
+- Survival quantile estimation
+- Harrington–Fleming weighted log-rank tests
+
+### Semi-Parametric Analysis
+
+- Cox proportional hazards models
+- Hazard ratio estimation
+- Likelihood ratio tests
+- Proportional hazards diagnostics:
+  - Nelson–Aalen plots
+  - Time-dependent covariate interactions
+  - Schoenfeld residual tests
+
+### Parametric Survival Models
+
+- Log-normal AFT model
+- Log-logistic AFT model
+- Model selection using AIC
 
 ---
 
-*SurvivalAnalysisProject — December 30, 2025*
+## Main Findings
+
+### Kaplan–Meier Analysis
+
+- U.S. populations tended to germinate earlier than Chinese populations.
+- Survival curves differed significantly between origins.
+- Weighted log-rank tests strongly rejected equality of survival functions.
+
+### Cox Proportional Hazards Model
+
+- Temperature significantly increased germination hazard.
+- The interaction between range and temperature was significant.
+- The proportional hazards assumption was violated.
+
+### Parametric Modeling
+
+A log-logistic Accelerated Failure Time (AFT) model provided the best fit.
+
+Results indicated:
+
+- Higher temperatures substantially accelerate germination.
+- U.S. populations generally germinate earlier.
+- The effect of temperature differs between native and non-native populations.
+
+---
+
+## Repository Structure
+
+```text
+.
+├── survival_analysis.R          # Complete R analysis script
+├── data
+│   └── germination_data.xlsx    # Raw dataset
+├── figures
+│   ├── km_by_origin.png         # Kaplan–Meier curves by origin
+│   ├── cox_survival_curves.png  # Cox model survival curves
+│   └── schoenfeld_residuals.png # PH assumption diagnostics
+├── report
+│   └── survival_analysis.pdf    # Final report
+├── LICENSE
+└── README.md
+```
+
+---
+
+## Required R Packages
+
+The analysis uses the following packages:
+
+```r
+library(readxl)
+library(FactoMineR)
+library(factoextra)
+library(corrplot)
+library(psych)
+library(survival)
+library(survminer)
+library(KMsurv)
+library(car)
+library(dplyr)
+library(tidyr)
+```
+
+Install missing packages with:
+
+```r
+install.packages(c(
+  "readxl",
+  "FactoMineR",
+  "factoextra",
+  "corrplot",
+  "psych",
+  "survival",
+  "survminer",
+  "KMsurv",
+  "car",
+  "dplyr",
+  "tidyr"
+))
+```
+
+---
+
+## Running the Analysis
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Mateus-Auza/survival-analysis-ulmus-pumila.git
+cd survival-analysis-ulmus-pumila
+```
+
+Open R or RStudio and run:
+
+```r
+source("survival_analysis.R")
+```
+
+The script imports the dataset, performs all analyses, and generates the figures used in the report.
+
+---
+
+## Results
+
+The complete analysis and interpretation are available in:
+
+```text
+report/survival_analysis.pdf
+```
+
+Figures generated during the analysis are stored in:
+
+```text
+figures/
+```
+
+---
+
+## Conclusions
+
+This study provides evidence that germination dynamics differ between native and invasive populations of *Ulmus pumila*. Temperature is the dominant factor influencing germination timing, while population origin modifies the response to temperature. Because the proportional hazards assumption was violated, parametric survival models offered a more appropriate framework than Cox regression for final inference.
+
+---
+
+## Author
+
+**Mateus Auza Cruz**
+
+December 2025
+
+---
+
+## License
+
+This project is distributed under the terms specified in the `LICENSE` file.
